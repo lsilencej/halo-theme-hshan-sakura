@@ -23,7 +23,6 @@ https://blog.lsilencej.top/
 * [x] 标题动效
 * [x] 目录样式优化
 * [x] 文章底部样式优化
-* [x] 
 * [x] 评论模块修改为 sakura 评论模块
 * [x] 更换字体
 
