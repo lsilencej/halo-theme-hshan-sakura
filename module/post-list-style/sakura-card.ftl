@@ -38,7 +38,7 @@
 							</#if>
 						</div>
 						<div class="float-content">
-							<p class="post-excerpt">${post.summary!}</p>
+							<p class="post-excerpt" <#if post_index % 2==0>style="text-align: right"</#if>>${post.summary!}</p>
 						</div>
 					</div>
 				</div>
