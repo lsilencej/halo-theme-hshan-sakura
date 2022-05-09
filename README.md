@@ -25,6 +25,7 @@ https://blog.lsilencej.top/
 * [x] 文章底部样式优化
 * [x] 评论模块修改为 sakura 评论模块
 * [x] 更换字体
+* [x] 归档界面样式修改为 xue 主题样式
 
 ## 参考
 
