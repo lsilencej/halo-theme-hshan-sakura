@@ -22,35 +22,28 @@
                 </header>
 
                 <@postTag method="archiveMonth">
-                    <div id="post-list" class="post-list inner" style="padding-top: 30px;margin-bottom: 30px;">
+                    <div id="post-list" class="post-list inner" style="padding-top: 60px;margin-bottom: 30px;">
+                        <#assign year="">
                         <#list archives as archive>
-                            <article class="post">
-                                <!-- post-header -->
-                                <header class="post-header" style="margin-bottom: 0 !important;">
-                                    <div class="post-header-wrap">
-                                        <div class="post-meta">
-                                            <time class="published published-txt" style="font-weight: bolder;"
-                                                  datetime="{archive.year?c}">
-                                                ${archive.year?c}年${archive.month!}月
-                                            </time>
-                                        </div>
-                                        <div class="post-title archives-list" style="margin-bottom: 0 !important;">
-                                            <#list archive.posts?sort_by("createTime")?reverse as post>
-                                                <div class="read-more">
-                                                    <a class="button" href="${post.fullPath!}" data-ajax>
-                                                        ${post.createTime?string('MM-dd')} ${post.title!}
-                                                        <span aria-hidden="true"></span>
-                                                        <span class="line left"></span>
-                                                        <span class="line top"></span>
-                                                        <span class="line right"></span>
-                                                        <span class="line bottom"></span>
-                                                    </a>
-                                                </div>
-                                            </#list>
-                                        </div>
-                                    </div>
-                                </header>
-                            </article>
+                            <section class="archive-year">
+                                <#if archive.year?c != year>
+                                    <h1>${archive.year?c}</h1>
+                                <#assign year="${archive.year?c}">
+                                </#if>
+                                <div>
+                                    <header class="archive-hd"> 
+                                        ${archive.month!} 月
+                                    </header>
+                                    <span class="">
+                                        <#list archive.posts?sort_by("createTime")?reverse as post>
+                                        <a class="archive-info" href="${post.fullPath!}">
+                                            <span class="archive-date" style="line-height: inherit !important;">${post.createTime?string('MM-dd')}</span>
+                                            <span class="archive-title" style="line-height: inherit !important; position: relative">${post.title!}</span>
+                                        </a>
+                                        </#list>
+                                    </span>
+                                </div>
+                            </section>
                         </#list>
                     </div>
                 </@postTag>
