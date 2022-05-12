@@ -400,7 +400,6 @@ if (document.getElementById('post-content')) {
             }
             var maxNum =
             Math.ceil(Math.max.apply(Math, _toConsumableArray(values)) / 5) * 5;
-            console.log("123");
             var categoryChart = echarts.init(
             document.getElementById("category-echarts")
             );
@@ -423,7 +422,7 @@ if (document.getElementById('post-content')) {
                 })(),
                 name: {
                     textStyle: {
-                    color: "#bebebe"
+                    color: "#999"
                     },
                 },
                 center: ["50%", "60%"],
@@ -535,7 +534,7 @@ if (document.getElementById('post-content')) {
               })(),
               name: {
                 textStyle: {
-                  color: "#bebebe"
+                  color: "#999"
                 },
               },
               center: ["50%", "60%"],
@@ -610,4 +609,243 @@ if (document.getElementById('post-content')) {
     };
 
     initCategoryEcharts();
+</script>
+
+<script src="${theme_base!}/assets/media/scripts/moment.js"></script>
+<script type="text/javascript">
+    $(document).on("pjax:complete", function() {
+        var calendarChart = echarts.init(document.getElementById('post-calendar'));
+
+        // calculate range.
+        var startDate = moment().subtract(1, 'years');
+        var endDate = moment();
+        var rangeArr = '["' + startDate.format('YYYY-MM-DD') + '", "' + endDate.format('YYYY-MM-DD') + '"]';
+
+        rangeArr = JSON.parse(rangeArr);
+        console.log(rangeArr);
+
+        // post and count map.
+        var dateMap = new Map();
+        <@postTag method="archive" type="year">
+            <#list archives as archive>
+                <#list archive.posts?sort_by("createTime")?reverse as post>
+                    var date = "${post.createTime?string('YYYY-MM-dd')?js_string}";
+                    var count = dateMap.get(date);
+                    dateMap.set(date, count == null || count == undefined ? 1 : count + 1);
+                </#list>
+            </#list>
+        </@postTag>
+
+        console.log(dateMap);
+
+        // loop the data for the current year, generating the number of post per day
+        var i = 0;
+        var datePosts = '[';
+        var dayTime = 3600 * 24 * 1000;
+        for (var time = startDate; time <= endDate; time += dayTime) {
+            var date = moment(time).format('YYYY-MM-DD');
+            datePosts = (i === 0 ? datePosts + '["' : datePosts + ', ["') + date + '", '
+                    + (dateMap.has(date) ? dateMap.get(date) : 0) + ']';
+            i++;
+        }
+        datePosts += ']';
+
+        datePosts = JSON.parse(datePosts);
+        console.log(datePosts);
+
+        var option = {
+            title: {
+                top: 0,
+                text: '文章日历',
+                left: 'center',
+                textStyle: {
+                    color: '#999'
+                }
+            },
+            tooltip: {
+                padding: 10,
+                backgroundColor: '#555',
+                borderColor: '#777',
+                borderWidth: 1,
+                formatter: function (obj) {
+                    var value = obj.value;
+                    return '<div style="font-size: 14px;">' + value[0] + '：' + value[1] + '</div>';
+                }
+            },
+            visualMap: {
+                show: true,
+                showLabel: true,
+                categories: [0, 1, 2, 3, 4],
+                calculable: true,
+                inRange: {
+                    symbol: 'rect',
+                    color: ['#ebedf0', '#c6e48b', '#7bc96f', '#239a3b', '#196127']
+                },
+                itemWidth: 12,
+                itemHeight: 12,
+                orient: 'horizontal',
+                left: 'center',
+                bottom: 0, 
+                textStyle: {
+                    color: '#999'
+                }
+            },
+            calendar: [{
+                left: 'center',
+                range: rangeArr,
+                cellSize: [13, 13],
+                splitLine: {
+                    show: false
+                },
+                itemStyle: {
+                    color: '#ebedf0',
+                    borderColor: '#fff',
+                    borderWidth: 2
+                },
+                yearLabel: {
+                    show: false
+                },
+                monthLabel: {
+                    nameMap: 'en',
+                    fontSize: 11, 
+                    color: '#bebebe'
+                },
+                dayLabel: {
+                    formatter: '{start}  1st',
+                    nameMap: 'cn',
+                    fontSize: 11, 
+                    color: '#bebebe'
+                }
+            }],
+            series: [{
+                type: 'heatmap',
+                coordinateSystem: 'calendar',
+                calendarIndex: 0,
+                data: datePosts
+            }]
+
+        };
+
+        calendarChart.setOption(option);
+    })
+
+    var calendarChart = echarts.init(document.getElementById('post-calendar'));
+
+    // calculate range.
+    var startDate = moment().subtract(1, 'years');
+    var endDate = moment();
+    var rangeArr = '["' + startDate.format('YYYY-MM-DD') + '", "' + endDate.format('YYYY-MM-DD') + '"]';
+
+    rangeArr = JSON.parse(rangeArr);
+    console.log(rangeArr);
+
+    // post and count map.
+    var dateMap = new Map();
+    <@postTag method="archive" type="year">
+        <#list archives as archive>
+            <#list archive.posts?sort_by("createTime")?reverse as post>
+                var date = "${post.createTime?string('YYYY-MM-dd')?js_string}";
+                var count = dateMap.get(date);
+                dateMap.set(date, count == null || count == undefined ? 1 : count + 1);
+            </#list>
+        </#list>
+    </@postTag>
+
+    console.log(dateMap);
+
+    // loop the data for the current year, generating the number of post per day
+    var i = 0;
+    var datePosts = '[';
+    var dayTime = 3600 * 24 * 1000;
+    for (var time = startDate; time <= endDate; time += dayTime) {
+        var date = moment(time).format('YYYY-MM-DD');
+        datePosts = (i === 0 ? datePosts + '["' : datePosts + ', ["') + date + '", '
+                + (dateMap.has(date) ? dateMap.get(date) : 0) + ']';
+        i++;
+    }
+    datePosts += ']';
+
+    datePosts = JSON.parse(datePosts);
+    console.log(datePosts);
+
+    var option = {
+        title: {
+            top: 0,
+            text: '文章日历',
+            left: 'center',
+            textStyle: {
+                color: '#999'
+            }
+        },
+        tooltip: {
+            padding: 10,
+            backgroundColor: '#555',
+            borderColor: '#777',
+            borderWidth: 1,
+            formatter: function (obj) {
+                var value = obj.value;
+                return '<div style="font-size: 14px;">' + value[0] + '：' + value[1] + '</div>';
+            }
+        },
+        legend: {
+            textStyle: {
+                color: '#999'
+            }
+        },
+        visualMap: {
+            show: true,
+            showLabel: true,
+            categories: [0, 1, 2, 3, 4],
+            calculable: true,
+            inRange: {
+                symbol: 'rect',
+                color: ['#ebedf0', '#c6e48b', '#7bc96f', '#239a3b', '#196127'], 
+            },
+            itemWidth: 12,
+            itemHeight: 12,
+            orient: 'horizontal',
+            left: 'center',
+            bottom: 0, 
+            textStyle: {
+                color: '#999'
+            }
+        },
+        calendar: [{
+            left: 'center',
+            range: rangeArr,
+            cellSize: [13, 13],
+            splitLine: {
+                show: false
+            },
+            itemStyle: {
+                color: '#ebedf0',
+                borderColor: '#fff',
+                borderWidth: 2
+            },
+            yearLabel: {
+                show: false
+            },
+            monthLabel: {
+                nameMap: 'en',
+                fontSize: 11, 
+                color: '#bebebe'
+            },
+            dayLabel: {
+                formatter: '{start}  1st',
+                nameMap: 'cn',
+                fontSize: 11, 
+                color: '#bebebe'
+            }
+        }],
+        series: [{
+            type: 'heatmap',
+            coordinateSystem: 'calendar',
+            calendarIndex: 0,
+            data: datePosts
+        }]
+
+    };
+
+    calendarChart.setOption(option);
+
 </script>

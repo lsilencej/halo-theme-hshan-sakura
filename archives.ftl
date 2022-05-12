@@ -21,13 +21,30 @@
                     </div>
                 </header>
 
+                <div id="post-list" class="post-list inner" style="padding-bottom: 90px;">
+                    <div class="tagcloud tag-page card-box">
+                        <style>
+                            #post-calendar {
+                                width: 100%;
+                                height: 200px;
+                            }
+                        </style>
+                        <div class="tag-contents">
+                            <div class="card">
+                                <div id="post-calendar" class="card-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <@postTag method="archiveMonth">
-                    <div id="post-list" class="post-list inner" style="padding-top: 60px;margin-bottom: 30px;">
+                    <div id="post-list" class="post-list inner" style="padding-top: 0;margin-bottom: 90px;">
+                        <h1 style="padding-top: 0">时间轴</h1>
                         <#assign year="">
                         <#list archives as archive>
                             <section class="archive-year">
                                 <#if archive.year?c != year>
-                                    <h1>${archive.year?c}</h1>
+                                    <h2>${archive.year?c}</h2>
                                 <#assign year="${archive.year?c}">
                                 </#if>
                                 <div>

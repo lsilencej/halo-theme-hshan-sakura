@@ -338,7 +338,7 @@ body.night {
 .night .is-active-link + span {
   background: var(--night-toc-bg-color) !important;
 }
-.night .archive-year h1 {
+.night .archive-year h2 {
   -webkit-transition: background 0.6s ease-in-out, padding 0.6s ease-in-out;
   -o-transition: background 0.6s ease-in-out, padding 0.6s ease-in-out;
   transition: background 0.6s ease-in-out, padding 0.6s ease-in-out;
