@@ -20,23 +20,46 @@
                     </div>
                 </header>
 
+                <div id="post-list" class="post-list inner">
+                    <div class="tagcloud tag-page card-box">
+                        <h1 style="padding-top: 0;">分类</h2>
+                        <p class="categories-tag">
+                            <@categoryTag method="list">
+                                <#if categories?? && categories?size gt 0>
+                                    <#list categories as category>
+                                        <a href="${category.fullPath!}" class="button" data-ajax>
+                                            ${category.name}&nbsp;${category.postCount!}
+                                            <span aria-hidden="true">
+                                                <span class="line left"></span>
+                                                <span class="line top"></span>
+                                                <span class="line right"></span>
+                                                <span class="line bottom"></span>
+                                            </span>
+                                        </a>
+                                    </#list>
+                                </#if>
+                            </@categoryTag>
+                        </p>
+                    </div>
+                </div>
+
                 <div id="post-list" class="post-list inner" style="padding-bottom: 90px;">
-                    <div class="tagcloud tag-page">
-                        <@categoryTag method="list">
-                            <#if categories?? && categories?size gt 0>
-                                <#list categories as category>
-                                    <a href="${category.fullPath!}" class="button" data-ajax>
-                                        ${category.name}
-                                        <span aria-hidden="true">
-                                            <span class="line left"></span>
-                                            <span class="line top"></span>
-                                            <span class="line right"></span>
-                                            <span class="line bottom"></span>
-                                        </span>
-                                    </a>
-                                </#list>
-                            </#if>
-                        </@categoryTag>
+                    <div class="tagcloud tag-page card-box">
+                        <h1 style="padding-top: 0; padding-bottom: 0; margin-bottom: 0">文章分类雷达图</h2>
+                        <style>
+                            #category-echarts {
+                                width: 100%;
+                                height: 360px;
+                            }
+                            #category-echarts div{
+                                margin: auto;
+                            }
+                        </style>
+                        <div class="tag-contents category-show">
+                            <div class="card">
+                                <div id="category-echarts" data-ajax></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

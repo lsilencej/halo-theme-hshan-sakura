@@ -46,7 +46,7 @@
                             <div style="position: relative">
                                 <div class="post-content article-content" id="post-content">
                                     <#if (.now?long-86400000*60)?number_to_datetime gte post.editTime?datetime>
-                                    <div class='note warning'>请注意，本文编写于&nbsp; ${(((.now?long) - (post.createTime?long)) / 86400000)?int} &nbsp;天前，最后编辑于&nbsp; ${(((.now?long) - (post.editTime?long)) / 86400000)?int} &nbsp;天前，内容可能已经不具有时效性，请谨慎参考。</div><hr/>
+                                        <div class='note warning'>请注意，本文编写于&nbsp;${(((.now?long) - (post.createTime?long)) / 86400000)?int}&nbsp;天前，最后编辑于&nbsp;${(((.now?long) - (post.editTime?long)) / 86400000)?int}&nbsp;天前，内容可能已经不具有时效性，请谨慎参考。</div><hr/>
                                     </#if>
 
                                     <div id="post-article-content">

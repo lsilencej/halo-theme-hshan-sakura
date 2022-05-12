@@ -372,3 +372,242 @@ if (document.getElementById('post-content')) {
     }
 
 </script>
+
+<script src="${theme_base!}/assets/media/scripts/echarts.min.js"></script>
+
+<script type="text/javascript">
+    var categoryRadar = {
+        <@categoryTag method="list">
+            <#list categories as category>
+                '${category.name!}': '${category.postCount!}',
+            </#list>
+        </@categoryTag>
+    };
+</script>
+
+<script>
+    $(document).on("pjax:complete", function() {
+        function initCategoryEcharts() {
+            if (
+            $("#category-echarts").length > 0 &&
+            $("#category-echarts").children().length == 0
+        ) {
+            var values = Object.values(categoryRadar), keys = Object.keys(categoryRadar);
+            // 这里向上取5的倍数，例如100则取100 101则取105]
+            if (keys.length < 3) {
+                $("#category-echarts").remove();
+                return;
+            }
+            var maxNum =
+            Math.ceil(Math.max.apply(Math, _toConsumableArray(values)) / 5) * 5;
+            console.log("123");
+            var categoryChart = echarts.init(
+            document.getElementById("category-echarts")
+            );
+            console.log($('body').hasClass('night'));
+            var option = {
+            tooltip: {
+                trigger: "item",
+                textStyle: {
+                align: "left",
+                },
+            },
+            radar: [
+                {
+                indicator: (function () {
+                    var indicators = [];
+                    for (var i = 0; i < keys.length; i++) {
+                    indicators.push({ text: keys[i], max: maxNum });
+                    }
+                    return indicators;
+                })(),
+                name: {
+                    textStyle: {
+                    color: "#bebebe"
+                    },
+                },
+                center: ["50%", "60%"],
+                radius: "60%",
+                },
+            ],
+            series: [
+                {
+                type: "radar",
+                itemStyle: {
+                    color: "rgb(123,234,185)",
+                },
+                lineStyle: {
+                    color: "rgb(123,234,185)",
+                },
+                areaStyle: {
+                    color: "rgb(123,234,185)",
+                },
+                data: [
+                    {
+                    value: values,
+                    name: "文章分类数量",
+                    },
+                ],
+                },
+            ],
+            };
+            categoryChart.setOption(option);
+        }
+        };
+
+        function _toConsumableArray(arr) {
+            return (
+                _arrayWithoutHoles(arr) ||
+                _iterableToArray(arr) ||
+                _unsupportedIterableToArray(arr) ||
+                _nonIterableSpread()
+            );
+        };
+
+        function _arrayWithoutHoles(arr) {
+            if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+        };
+
+        function _iterableToArray(iter) {
+            if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter))
+                return Array.from(iter);
+        };
+
+        function _unsupportedIterableToArray(o, minLen) {
+            if (!o) return;
+            if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+            var n = Object.prototype.toString.call(o).slice(8, -1);
+            if (n === "Object" && o.constructor) n = o.constructor.name;
+            if (n === "Map" || n === "Set") return Array.from(o);
+            if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+                return _arrayLikeToArray(o, minLen);
+        };
+
+        function _nonIterableSpread() {
+            throw new TypeError(
+                "Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
+            );
+        };
+
+        function _arrayLikeToArray(arr, len) {
+            if (len == null || len > arr.length) len = arr.length;
+            for (var i = 0, arr2 = new Array(len); i < len; i++) {
+                arr2[i] = arr[i];
+            }
+            return arr2;
+        };
+        initCategoryEcharts();
+    })   
+
+    function initCategoryEcharts() {
+        if (
+        $("#category-echarts").length > 0 &&
+        $("#category-echarts").children().length == 0
+      ) {
+        var values = Object.values(categoryRadar), keys = Object.keys(categoryRadar);
+        // 这里向上取5的倍数，例如100则取100 101则取105]
+        if (keys.length < 3) {
+            $("#category-echarts").remove();
+            return;
+        }
+        var maxNum =
+          Math.ceil(Math.max.apply(Math, _toConsumableArray(values)) / 5) * 5;
+        console.log("123");
+        var categoryChart = echarts.init(
+          document.getElementById("category-echarts")
+        );
+        console.log($('body').hasClass('night'));
+        var option = {
+          tooltip: {
+            trigger: "item",
+            textStyle: {
+              align: "left",
+            },
+          },
+          radar: [
+            {
+              indicator: (function () {
+                var indicators = [];
+                for (var i = 0; i < keys.length; i++) {
+                  indicators.push({ text: keys[i], max: maxNum });
+                }
+                return indicators;
+              })(),
+              name: {
+                textStyle: {
+                  color: "#bebebe"
+                },
+              },
+              center: ["50%", "60%"],
+              radius: "60%",
+            },
+          ],
+          series: [
+            {
+              type: "radar",
+              itemStyle: {
+                color: "rgb(123,234,185)",
+              },
+              lineStyle: {
+                color: "rgb(123,234,185)",
+              },
+              areaStyle: {
+                color: "rgb(123,234,185)",
+              },
+              data: [
+                {
+                  value: values,
+                  name: "文章分类数量",
+                },
+              ],
+            },
+          ],
+        };
+        categoryChart.setOption(option);
+      }
+    };
+
+    function _toConsumableArray(arr) {
+        return (
+            _arrayWithoutHoles(arr) ||
+            _iterableToArray(arr) ||
+            _unsupportedIterableToArray(arr) ||
+            _nonIterableSpread()
+        );
+    };
+
+    function _arrayWithoutHoles(arr) {
+        if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+    };
+
+    function _iterableToArray(iter) {
+        if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter))
+            return Array.from(iter);
+    };
+
+    function _unsupportedIterableToArray(o, minLen) {
+        if (!o) return;
+        if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+        var n = Object.prototype.toString.call(o).slice(8, -1);
+        if (n === "Object" && o.constructor) n = o.constructor.name;
+        if (n === "Map" || n === "Set") return Array.from(o);
+        if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+            return _arrayLikeToArray(o, minLen);
+    };
+
+    function _nonIterableSpread() {
+        throw new TypeError(
+            "Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
+        );
+    };
+
+    function _arrayLikeToArray(arr, len) {
+        if (len == null || len > arr.length) len = arr.length;
+        for (var i = 0, arr2 = new Array(len); i < len; i++) {
+            arr2[i] = arr[i];
+        }
+        return arr2;
+    };
+
+    initCategoryEcharts();
+</script>
