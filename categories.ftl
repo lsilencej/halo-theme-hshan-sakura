@@ -51,6 +51,7 @@
                                 width: 100%;
                                 height: 360px;
                             }
+
                             #category-echarts div{
                                 margin: auto;
                             }

@@ -20,16 +20,59 @@
                     </div>
                 </header>
 
-                <div id="post-list" class="post-list inner" style="padding-bottom: 50px;">
-                    <div class="tagcloud tag-page">
+                <div id="post-list" class="post-list inner" style="padding-bottom: 90px">
+                    <div class="tagcloud tag-page card-box">
+                        <h1 style="padding-top: 0; padding-bottom: 0; margin-bottom: 0">标签云</h2>
+                        <div class="tag-chips" id="tag-chips">
+                            <@tagTag method="list">
+                                <#list tags as tag>
+                                <a href="${tag.fullPath!}" title="${tag.name!}: ${tag.postCount!}">
+                                    <span class="chip chip-default">${tag.name!}
+                                        <span class="tag-length">&nbsp;${tag.postCount!}</span>
+                                    </span>
+                                </a>
+                                </#list>
+                            </@tagTag>
+                        </div>
+                        <style>
+
+                            #rotate {  
+                                height: 400px;  
+                                width: 350px;  
+                                position: relative;  
+                                margin: 10px auto;  
+                            }
+
+                            @media only screen and (max-width: 400px) {
+                                #rotate {  
+                                    height: 400px;  
+                                    width: 70px;  
+                                    position: relative;  
+                                    margin: 10px auto;  
+                                }
+                            }
+                            
+                            #rotate a {  
+                                position: absolute;  
+                                top: 0px;  
+                                left: 0px;  
+                                color: '#999';  
+                                font-weight: bold;  
+                                padding: 3px 6px;  
+                                font-size: 14px;  
+                            }
+                        
+                            #rotate a:hover {  
+                                border: 1px solid #999;  
+                                background: #fff;  
+                                border-radius: 5px;  
+                            } 
+                        </style>
                         <@tagTag method="list">
                             <#if tags?? && tags?size gt 0>
-                                <div class="tags-item" style="padding: 20px 0;">
+                                <div id="rotate">
                                     <#list tags as tag>
-                                        <a class="tag-item" data-ajax href="${tag.fullPath!}">
-                                        <span class="name">🔖&nbsp;${tag.name}</span>
-                                        <span>&nbsp;${tag.postCount}</span>
-                                        </a>
+                                        <a data-ajax href="${tag.fullPath!}" title="${tag.name}">${tag.name}</a>
                                     </#list>
                                 </div>
                             </#if>

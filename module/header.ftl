@@ -56,14 +56,14 @@
                     <#list menus?sort_by('priority') as menu>
                         <li class="menu-scroll-item">
                             <#if menu.children?? && menu.children?size gt 0>
-                                <span class="faa-parent animated-hover" style="font-size: 16px">
+                                <span class="faa-parent animated-hover">
                                     <#if menu.icon?? && menu.icon?trim?length gt 0>
                                         <i class="${menu.icon}" aria-hidden="true"></i>
-                                    </#if><a href="javascript:void(0)" data-ajax target="${menu.target!}" onfocus="this.blur();">${menu.name}</a>
+                                    </#if><a href="javascript:void(0)" data-ajax target="${menu.target!}" onfocus="this.blur();" style="font-size: 1.2rem">${menu.name}</a>
                                 </span>
                             <#else>
                                 <a <#if menu.url?? && menu.url?trim?length gt 0> href="${menu.url!}" data-ajax target="${menu.target!} onfocus="this.blur();" </#if>>
-                                    <span class="faa-parent animated-hover" style="font-size: 16px">
+                                    <span class="faa-parent animated-hover" style="font-size: 1.2rem">
                                         <#if menu.icon?? && menu.icon?trim?length gt 0>
                                             <i class="${menu.icon}" aria-hidden="true"></i>
                                         </#if>${menu.name}
@@ -75,7 +75,7 @@
                                     <#list menu.children?sort_by('priority') as child>
                                         <li>
                                             <a href="${child.url!}" data-ajax target="${child.target!} onfocus="this.blur();">
-                                                <span class="faa-parent animated-hover" style="font-size: 16px">
+                                                <span class="faa-parent animated-hover" style="font-size: 1.2rem">
                                                     <#if child.icon?? && child.icon?trim?length gt 1>
                                                         <i class="${child.icon}" aria-hidden="true"></i>
                                                     </#if>${child.name}

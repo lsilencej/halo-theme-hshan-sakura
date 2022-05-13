@@ -51,7 +51,7 @@
                                     <header class="archive-hd"> 
                                         ${archive.month!} 月
                                     </header>
-                                    <span class="">
+                                    <span class="archive-span">
                                         <#list archive.posts?sort_by("createTime")?reverse as post>
                                         <a class="archive-info" href="${post.fullPath!}">
                                             <span class="archive-date" style="line-height: inherit !important;">${post.createTime?string('MM-dd')}</span>

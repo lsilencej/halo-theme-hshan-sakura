@@ -103,7 +103,7 @@
   padding-right: 0.5rem;
   white-space: nowrap;
   letter-spacing: 0.025em;
-  font-size: 0.875rem;
+  font-size: 1rem;
   line-height: 1.25rem;
   opacity: 0.6;
 }
@@ -113,6 +113,12 @@
   transition: box-shadow 0.5s cubic-bezier(0.71, 0, 0, 0.99);
   text-decoration: none;
   display: table-cell;
-  font-size: 1.125rem;
+  font-size: 1.3rem;
   line-height: 1.75rem;
+}
+.archive-span a {
+  color: #555555;
+}
+.archive-span a:hover {
+  background: #f4f4f4 !important;
 }

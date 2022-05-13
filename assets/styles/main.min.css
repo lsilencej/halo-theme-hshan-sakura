@@ -3444,7 +3444,7 @@ li.task-list-item {
   padding-right: 0.5rem;
   white-space: nowrap;
   letter-spacing: 0.025em;
-  font-size: 0.875rem;
+  font-size: 1rem;
   line-height: 1.25rem;
   opacity: 0.6;
 }
@@ -3454,8 +3454,14 @@ li.task-list-item {
   transition: box-shadow 0.5s cubic-bezier(0.71, 0, 0, 0.99);
   text-decoration: none;
   display: table-cell;
-  font-size: 1.125rem;
+  font-size: 1.3rem;
   line-height: 1.75rem;
+}
+.archive-span a {
+  color: #555555;
+}
+.archive-span a:hover {
+  background: #f4f4f4 !important;
 }
 .categories-tag {
   display: flex;
@@ -3468,6 +3474,34 @@ li.task-list-item {
 }
 .tag-page a {
   font-size: 16px;
+}
+.tag-page .tag-chips {
+  margin: 1rem auto 0.5rem;
+  max-width: 850px;
+  text-align: center;
+}
+.tag-page .chip {
+  margin: 10px 10px;
+  padding: 19px 14px;
+  display: inline-flex;
+  line-height: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.12);
+  z-index: 0;
+}
+.tag-page .chip:hover {
+  color: #fff;
+  background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%) !important;
+}
+.tag-page .chip-default {
+  color: #34495e;
+}
+.chip-default .tag-length {
+  color: #9b8b2a;
+  margin-top: 0px;
 }
 .links-box .links-items {
   display: flex;
@@ -5047,6 +5081,12 @@ body.night {
 }
 .night .archive-year:before {
   border-color: white;
+}
+.night .archive-span a {
+  color: #85859d;
+}
+.night .archive-span a:hover {
+  background: #555555 !important;
 }
 .night .card-box {
   box-shadow: 0 1px 35px -8px rgba(0, 0, 0, 0.8);
