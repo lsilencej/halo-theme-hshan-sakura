@@ -17,9 +17,6 @@ body.night {
      目录
      */
   /*
-     评论
-     */
-  /*
     无搜索结果页面 样式
      */
 }
@@ -180,9 +177,6 @@ body.night {
 }
 .night .is-active-link + span {
   background: var(--night-toc-bg-color) !important;
-}
-.night .comments-area {
-  border-top: 1px solid #676a6c;
 }
 .night .s-search input {
   background-color: var(--night-input-backgrround) !important;
@@ -361,6 +355,13 @@ body.night {
 }
 .night .card-box {
   box-shadow: 0 1px 35px -8px rgba(0, 0, 0, 0.8);
+  -webkit-transition: background 0.6s ease-in-out, padding 0.6s ease-in-out;
+  -o-transition: background 0.6s ease-in-out, padding 0.6s ease-in-out;
+  transition: background 0.6s ease-in-out, padding 0.6s ease-in-out;
+}
+.night .note {
+  color: #666;
+  background: var(--night-toc-bg-color) !important;
   -webkit-transition: background 0.6s ease-in-out, padding 0.6s ease-in-out;
   -o-transition: background 0.6s ease-in-out, padding 0.6s ease-in-out;
   transition: background 0.6s ease-in-out, padding 0.6s ease-in-out;

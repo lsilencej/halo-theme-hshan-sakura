@@ -39,7 +39,10 @@
 
                 <@postTag method="archiveMonth">
                     <div id="post-list" class="post-list inner" style="padding-top: 0;margin-bottom: 90px;">
-                        <h1 style="padding-top: 0">时间轴</h1>
+                        <h1 style="padding-top: 0; padding-bottom: 0;">时间轴</h1>
+                        <@postTag method="count">
+                            <h2 style="padding-top: 0; margin-top: 0; margin-bottom: 40px">共计${count!0}篇文章</h2>
+                        </@postTag>
                         <#assign year="">
                         <#list archives as archive>
                             <section class="archive-year">

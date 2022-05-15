@@ -11,7 +11,7 @@
 
         <section class="comments-area">
             <hr />
-            <h2 style="padding-top: 35px;padding-bottom: 5px;">评论</h2>
+            <h2 id="comments-list-title">评论</h2>
             <div class="inner" id="commentInner">
                 <halo-comment id='${target.id?c}' type='${type}' configs='${configs}'/>
             </div>

@@ -24,6 +24,7 @@
                             </#if>
                         </div>
                     </div>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5278166679397841" crossorigin="anonymous"></script>
                 </header>
                 <div id="postContainer">
                     <#include "module/post-list-style/sakura-card.ftl">

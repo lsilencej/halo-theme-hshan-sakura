@@ -19,43 +19,31 @@
                         </div>
                     </div>
                 </header>
-                <div class="links-box">
-                    <div class="links-items">
+                <div class="sheet-content" style="padding: 1px 40px;">
+                    <div class="links">
                         <@linkTag method="listTeams">
                             <#list teams as item>
                                 <#if item.team?? && item.team!=''>
-                                    <h3 style="width: 100%; margin: 10px;">${item.team}</h3>
+                                    <h3 class="link-title" style="width: 100%; margin: 10px;">
+                                        <span class="fake-title">${((item.team!'')?length>0)?string((item.team!''), '小伙伴们')}</span>
+                                    </h3>
                                 </#if>
-
-                                <#list item.links?sort_by('priority')?reverse  as link>
-                                    <a class="links-item card-item-vel" style="display: block;" href="${link.url}" target="_blank" onfocus="this.blur();">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <figure class="image is-64x64">
-                                                    <#if link.logo?? && link.logo != ''>
-                                                        <img src="${link.logo}" alt="${link.name}">
-                                                    <#elseif settings.links_placeholder?? && settings.links_placeholder != ''>
-                                                        <img src="${settings.links_placeholder}"
-                                                             alt="${link.name}">
-                                                    <#else>
-                                                        <img src="https://cdn.jsdelivr.net/gh/hshanx/static@v1.0.1/placeholder.jpg"
-                                                             alt="${link.name}">
-                                                    </#if>
-                                                </figure>
-                                            </div>
-                                            <div class="media-content">
-                                                <p class="link-title">${link.name}</p>
-                                                <p class="link-desc">${link.description}</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </#list>
+                                <ul class="link-items">
+                                    <#list item.links?sort_by('priority')?reverse as link>
+                                        <li class="link-item">
+                                            <a class="link-item-inner" href="${link.url!}" title="${link.name!}" target="_blank">
+                                                <img class="lazyload" src="${link.logo!}">
+                                                <span class="sitename">${link.name!}</span>
+                                                <div class="linkdes">${link.description!}</div>
+                                            </a>
+                                        </li>
+                                    </#list>
+                                </ul>
                             </#list>
                         </@linkTag>
                     </div>
                 </div>
             </div>
-
         </main>
     </div>
 </@layout>

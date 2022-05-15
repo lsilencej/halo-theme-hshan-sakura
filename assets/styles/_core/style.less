@@ -1935,10 +1935,6 @@ pre .storage {
   padding: 0 !important;
 }
 
-.comments-area {
-  padding: 0 5%;
-}
-
 #comments-show {
   background: 0;
   border: 0;
@@ -1956,6 +1952,23 @@ pre .storage {
   padding-bottom: 45px;
   padding-top: 45px;
 }
+
+#comments-list-title {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+@media (max-width: 1080px) {
+
+  #comments-list-title,
+  nav#comments-navi {
+    width: 100%;
+    padding: 0 6.39%;
+    max-width: 1245px;
+  }
+
+}
+
 
 /**
  * 6.3 Paging Navigation
