@@ -18,7 +18,10 @@
 					<div class="post-content">
 						<div class="post-date">
 							<i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;${post.createTime?string('yyyy-MM-dd')}&nbsp;
-							<#if post.topPriority?? && post.topPriority!=0>&nbsp;<i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i></#if>
+							<#if (.now?long-86400000*5)?number_to_datetime lte post.editTime?datetime && post.editTime?datetime gt post.createTime?datetime>
+								<i class="fa fa-refresh" aria-hidden="true" title="最近有更新" style="color: var(--code-toolbar-color);"></i>
+							</#if>
+							<#if post.topPriority?? && post.topPriority!=0>&nbsp;<i class="fa fa-arrow-circle-o-up" aria-hidden="true" title="置顶"></i></#if>
 						</div>
 						<a href="${post.fullPath!}" class="post-title"><h3>${post.title!}</h3></a>
 						<div class="post-meta">

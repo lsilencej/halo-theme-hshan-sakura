@@ -26,7 +26,7 @@
 //}
 
 html {
-  font-size: 14px;
+  font-size: 15px;
   font-family: BC Jing Jie;
 }
 
@@ -290,23 +290,23 @@ h1 {
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 26px;
   margin: 40px 0 18px
 }
 
 h3 {
-  font-size: 22px;
+  font-size: 24px;
   margin: 25px 0 16px
 }
 
 h4 {
-  font-size: 20px;
+  font-size: 22px;
   margin: 25px 0 14px
 }
 
 h5,
 h6 {
-  font-size: 18px;
+  font-size: 20px;
   margin: 25px 0 12px
 }
 
@@ -2716,6 +2716,16 @@ hr:hover::before {
   color: #d9534f;
 }
 
+.note.secondary {
+  background-color: #f7f7f7;
+  border-left-color: #777;
+}
+
+.note.secondary:not(.no-icon):before {
+  content: "\f056";
+  color: #777;
+}
+
 h1.fes-title {
   padding-top: 0;
   padding-bottom: 10px;
@@ -2795,4 +2805,43 @@ a.page-link:hover {
   box-shadow: 0 15px 35px rgb(50 50 93 / 10%), 0 5px 15px rgb(0 0 0 / 7%);
   border-radius: 10px;
   padding: 24px;
+}
+
+.label {
+  display: inline;
+  border-radius: 3px;
+  font-size: 85%;
+  margin: 0;
+  padding: 0.2em 0.4em;
+  color: #3c4858;
+}
+
+.label-success {
+  background: #eff8f0;
+}
+
+.label-info {
+  background: #eef7fa;
+}
+
+.label-secondary {
+  background: #f7f7f7;
+}
+
+.label-danger {
+  background: #fcf1f2;
+}
+
+.label-primary {
+  background: #f5f0fa;
+}
+
+#sheet-about h1,
+#sheet-about h2,
+#sheet-about h3,
+#sheet-about h4,
+#sheet-about h5,
+#sheet-about h6 {
+  margin-top: 40px;
+  padding-top: 0;
 }

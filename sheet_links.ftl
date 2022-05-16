@@ -42,14 +42,7 @@
                             </#list>
                         </@linkTag>
                     </div>
-
-                    <div class="note info no-icon">
-                        <b style="font-size: 1.4rem;">友链申请格式：</b><br /><br /> 
-                        - 博客名称: lsilencej の Blog<br />
-                        - 博客地址: <a href="https://blog.lsilencej.top/">https://blog.lsilencej.top/</a><br />
-                        - 博客头像: <a href="https://blog.lsilencej.top/avatar">https://blog.lsilencej.top/avatar</a><br />
-                        - 博客描述: 修身养性，少欲随缘<br />
-                    </div>
+                    ${sheet.formatContent!}
                     <#include "module/comment.ftl">
                     <#if is_post??>
                         <@comment target=post type="post" />
